@@ -1,0 +1,50 @@
+25  git clone --recurse-submodules https://github.com/astromariia/cvw.git
+   26  cd cvw
+   27  source ./setup.sh.
+   28  ls
+   29  ls -l\
+   30  ls -l
+   31  chmod +x setup.sh
+   32  source ./setup.sh.
+   33  source ./setup.sh
+   34  echo $WALLY
+   35  cd examples/C/hello.
+   36  cd examples/C/hello
+   37  make
+   38  wsim --sim questa rv64gc --elf hello
+   39  cd $WALLY/examples/asm/example
+   40  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany -nostartfiles -T../../link/link.ld example.S
+   41  riscv64-unknown-elf-objdump -D example > example.objdump
+   42  riscv64-unknown-elf-objdump -D example > example.objdump
+   43  cd cvw
+   44  cd examples
+   45  cd asm
+   46  cd example
+   47  source ./setup.sh
+   48  cd examples
+   49  cd c
+   50  cd C
+   51  cat common/test.ld
+   52  cd ..
+   53  cat Makefile
+   54  make
+   55  make clean
+   56  cd $WALLY/examples/asm/sumtest
+   57  make
+   58  spike +signature=sumtest.signature.output sumtest
+   59  cat sumtest
+   60  diff sumtest.signature.output sumtest.reference_output
+   61  make clean
+   62  make
+   63  make sim
+   64  riscv64-unknoqn-elf-readelf -a sumtest
+   65  riscv64-unknown-elf-readelf -a sumtest
+   66  cd $WALLY/examples/C/sum
+   67  make
+   68  spike sum
+   69  wsim --sim questa rv64gc --elf sum
+   70  cd ..
+   71  cd fir1
+   72  make
+   73  make clean
+   74  make

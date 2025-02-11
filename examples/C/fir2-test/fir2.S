@@ -21,48 +21,37 @@
 fir:
     sub t0, a3, a4       
     addi t0, t0, 1      
-    slli t0, t0, 2       
-    add t0, a2, t0  
+    slli t0, t0, 2        
+    add t0, a2, t0        
 
-    addi t2, a4, -1      
-    slli t2, t2, 2       
-    add t2, a0, t2  
+    addi t2, a4, -1       
+    slli t2, t2, 2        
+    add t2, a0, t2       
 
 forj: 
-    bge a2, t0, donej    
+    bge a2, t0, donej     
+    li t3, 0              
+    li t1, 0              
+    mv t4, a1             
+    mv t5, t2             
 
-    li t3, 0         
-    mv t4, a1        
-    mv t5, t2        
+fori:
+    lw t6, 0(t4)          
+    lw a5, 0(t5)          
 
-    # Unrolled loop for m=4
-    lw t6, 0(a1)    
-    lw a5, 0(t5)    
-    mul a7, t6, a5  
-    srai a7, a7, 31 
-    add t3, t3, a7  
+    addi t4, t4, 4        
+    addi t5, t5, -4       
 
-    lw t6, 4(a1)    
-    lw a5, -4(t5)    
-    mul a7, t6, a5  
-    srai a7, a7, 31 
-    add t3, t3, a7  
+    mul a7, t6, a5        
+    srai a7, a7, 31      
+    add t3, t3, a7        
 
-    lw t6, 8(a1)    
-    lw a5, -8(t5)    
-    mul a7, t6, a5  
-    srai a7, a7, 31 
-    add t3, t3, a7  
+    addi t1, t1, 1        
+    blt t1, a4, fori      
 
-    lw t6, 12(a1)    
-    lw a5, -12(t5)    
-    mul a7, t6, a5  
-    srai a7, a7, 31 
-    add t3, t3, a7  
-
-    sw t3, 0(a2)
-    addi a2, a2, 4
-    addi t2, t2, 4
+    sw t3, 0(a2)          
+    addi a2, a2, 4        
+    addi t2, t2, 4        
     j forj
 
 donej:

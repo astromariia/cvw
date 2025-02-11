@@ -24,25 +24,7 @@
    48  cd examples
    49  cd c
    50  cd C
-   51  cat common/test.ld
-   52  cd ..
-   53  cat Makefile
-   54  make
-   55  make clean
-   56  cd $WALLY/examples/asm/sumtest
-   57  make
-   58  spike +signature=sumtest.signature.output sumtest
-   59  cat sumtest
-   60  diff sumtest.signature.output sumtest.reference_output
-   61  make clean
-   62  make
-   63  make sim
-   64  riscv64-unknoqn-elf-readelf -a sumtest
-   65  riscv64-unknown-elf-readelf -a sumtest
-   66  cd $WALLY/examples/C/sum
-   67  make
-   68  spike sum
-   69  wsim --sim questa rv64gc --elf sum
+   51  
    70  cd ..
    71  cd fir1
    72  make

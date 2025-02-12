@@ -52,11 +52,11 @@ In this lab we learned about the RISC-V toolchain workflows, assembling and diss
 
 # Instructions for running fir1 and fir2
 Make sure Wally is activated:
-source ./setup.sh
-Then navigate to the fir1 folder
-type make clean
-type make
+* source ./setup.sh
+* Then navigate to the fir1 folder
+* type "make clean"
+* type "make"
 
 For fir2 navigate to that folder
-type make clean
-type make 
+* type make clean
+* type make 

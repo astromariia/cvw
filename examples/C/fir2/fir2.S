@@ -19,37 +19,40 @@
 .global fir
 
 fir:
-# where the arrays should end
-sub t0, a3,a4
-addi t0, t0,1
-addi t1,t1,4
-mul t0, t1,t0
-add t0,t0,a2
+    sub t0, a3, a4       
+    addi t0, t0, 1      
+    slli t0, t0, 2        
+    add t0, a2, t0        
+
+    addi t2, a4, -1       
+    slli t2, t2, 2        
+    add t2, a0, t2       
 
 forj: 
-bge  a2,t0,donej
-mv t3,zero
-mv t1,zero
-add t4,a1,zero
-add t5,a0,zero
+    bge a2, t0, donej     
+    li t3, 0              
+    li t1, 0              
+    mv t4, a1             
+    mv t5, t2             
 
 fori:
-bge t1, a4, donei
-lw t6,0(t4)
-lw a5,0(t5)
-mul a7,t6,a5
-srli a7, a7,31
-add t3, t3, a7
-addi t4, t4,4
-addi t5, t5,4
-addi t1,t1,1
-j fori
+    lw t6, 0(t4)          
+    lw a5, 0(t5)          
 
-donei:
-   sw t3,0(a2)
-   addi a2,a2,4
-    addi a0,a0,4
+    addi t4, t4, 4        
+    addi t5, t5, -4       
+
+    mul a7, t6, a5        
+    srai a7, a7, 31      
+    add t3, t3, a7        
+
+    addi t1, t1, 1        
+    blt t1, a4, fori      
+
+    sw t3, 0(a2)          
+    addi a2, a2, 4        
+    addi t2, t2, 4        
     j forj
 
 donej:
-    ret                 # all done; return	
+    ret
